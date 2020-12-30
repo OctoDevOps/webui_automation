@@ -13,5 +13,17 @@ node {
     stage("Smoke Test"){
         sh './mvnw clean verify'
     }
+
+    stage("Publishing Result"){
+        publishHTML (target: [
+            allowMissing: false,
+            alwaysLinkToLastBuild: false,
+            keepAll: true,
+            reportDir: 'target',
+            reportFiles: 'site/sernity/index.html',
+            reportName: "UI Test Report"
+            ])
+     }
+
 }
 

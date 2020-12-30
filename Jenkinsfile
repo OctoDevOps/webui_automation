@@ -11,7 +11,7 @@ node {
                 }
 
     stage("Smoke Test"){
-        sh './mvnw clean install aggregate'
+        sh './mvnw clean deploy'
     }
 }
 

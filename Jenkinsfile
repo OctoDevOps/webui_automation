@@ -19,7 +19,7 @@ node {
             allowMissing: false,
             alwaysLinkToLastBuild: false,
             keepAll: true,
-            reportDir: 'target/site/sernity',
+            reportDir: 'target/site/serenity',
             reportFiles: 'index.html',
             reportName: "UI Test Report"
             ])

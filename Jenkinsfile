@@ -16,8 +16,8 @@ node {
         try {
             timeout(time: 60, unit: 'SECONDS') { // change to a convenient timeout for you
                 userInput = input(
-                ok:'Yes', message: 'Choose the test scope', parameters: [
-                choice(name: 'RELEASE_SCOPE', choices: 'smoke\nrelease', description: 'What is the test scope?')
+                ok:'Yes', message: 'What do you want to do today?', parameters: [
+                choice(name: 'Choose the test scope', choices: 'smoke\nrelease', description: 'What is the test scope?')
                 ])
             }
         } catch(err) { // timeout reached or input false
@@ -37,7 +37,7 @@ node {
             // do something
             echo "Admin has approved to continue smoke testing"
                 stage("Smoke Test"){
-                        sh './mvnw clean verify'
+                        sh './mvnw clean verify -Dtags="@smoke"'
                     }
         } else if (userInput == 'release'){
             // do something else

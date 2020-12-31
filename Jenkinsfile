@@ -30,24 +30,22 @@ node {
             }
         }
 
-        node {
-            if (didTimeout) {
-                // do something on timeout
-                echo "no input was received before timeout"
-            } else if (userInput == 'smoke') {
-                // do something
-                echo "Admin has approved to continue smoke testing"
-                    stage("Smoke Test"){
-                            sh './mvnw clean verify'
-                        }
-            } else if (userInput == 'release'){
-                // do something else
-                echo "Admin has approved to continue Regression testing"
-                    stage("Regression Testing"){
+        if (didTimeout) {
+            // do something on timeout
+            echo "no input was received before timeout"
+        } else if (userInput == 'smoke') {
+            // do something
+            echo "Admin has approved to continue smoke testing"
+                stage("Smoke Test"){
                         sh './mvnw clean verify'
                     }
-            } 
-        }
+        } else if (userInput == 'release'){
+            // do something else
+            echo "Admin has approved to continue Regression testing"
+                stage("Regression Testing"){
+                    sh './mvnw clean verify'
+                }
+        } 
     }
 
     stage("Publishing Result"){

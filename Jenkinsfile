@@ -37,7 +37,7 @@ node {
             // do something
             echo "Admin has approved to continue smoke testing"
                 stage("Smoke Test"){
-                        sh './mvnw clean verify -Dcucumber.filter.tags="@smoke"'
+                        sh './mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags="@smoke"'
                     }
         } else if (userInput == 'release'){
             // do something else

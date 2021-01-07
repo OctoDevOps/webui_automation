@@ -11,6 +11,7 @@ import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import iae.navigation.NavigateTo;
 import iae.search.LookForInformation;
+import iae.search.SearchOptions;
 import iae.search.AwardsResult;
 
 public class SearchStepDefinitions {
@@ -32,6 +33,16 @@ public class SearchStepDefinitions {
         );
     }
 
+    @When("{actor} looks up {string} keyword and selected {string} option")
+    public void searchesFor(Actor actor, String term,String search_option) {
+        actor.attemptsTo(
+                SearchOptions.about(search_option)
+        );
+        actor.attemptsTo(
+                LookForInformation.about(term)
+        );
+    }
+
     @Then("{actor} should see all {string} related awards")
     public void should_see_information_about(Actor actor, String term) {
         actor.attemptsTo(
@@ -40,4 +51,5 @@ public class SearchStepDefinitions {
                 .containsIgnoringCase(term)
         );
     }
+
 }

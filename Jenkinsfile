@@ -37,13 +37,13 @@ node {
             // do something
             echo "Admin has approved to continue smoke testing"
                 stage("Smoke Test"){
-                        sh './mvnw clean verify -Dtags="@smoke"'
+                        sh './mvnw clean verify -Dcucumber.filter.tags="@smoke"'
                     }
         } else if (userInput == 'release'){
             // do something else
             echo "Admin has approved to continue Regression testing"
                 stage("Regression Testing"){
-                    sh './mvnw clean verify'
+                    sh './mvnw clean verify -Dcucumber.filter.tags="@regression"'
                 }
         } 
     }
@@ -55,7 +55,7 @@ node {
             keepAll: true,
             reportDir: 'target/site/serenity',
             reportFiles: 'index.html',
-            reportName: "UI Test Report"
+            reportName: "WebUI Test Report"
             ])
      }
 

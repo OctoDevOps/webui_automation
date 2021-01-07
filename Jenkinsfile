@@ -43,7 +43,7 @@ node {
             // do something else
             echo "Admin has approved to continue Regression testing"
                 stage("Regression Testing"){
-                    sh './mvnw clean verify -Dcucumber.filter.tags="@regression"'
+                    sh './mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags="@regression"'
                 }
         } 
     }

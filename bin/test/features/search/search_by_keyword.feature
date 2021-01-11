@@ -6,6 +6,10 @@ Feature: Search by keyword
     When he looks up "Mobile App" keyword
     Then he should see all "Mobile App" related awards
 
+    Given Dinesh is searching for government awards
+    When he looks up "Environmental" keyword
+    Then he should see all "Environmental" related awards
+
 @regression
   Scenario: Searching for a term with a Filter option
     Given Dinesh is searching for government awards

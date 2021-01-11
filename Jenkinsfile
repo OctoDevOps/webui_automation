@@ -32,7 +32,10 @@ node {
 
         if (didTimeout) {
             // do something on timeout
-            echo "no input was received before timeout"
+            echo "no input was received before timeout. Thus, performing Smoke Test"
+            stage("Smoke Test"){
+                sh './mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags="@smoke"'
+            }
         } else if (userInput == 'smoke') {
             // do something
             echo "Admin has approved to continue smoke testing"

@@ -13,7 +13,7 @@ node {
     stage("Test"){
         def userInput = true
         def didTimeout = false
-        def tests = readJSON file: "${env.WORKSPACE}\\testConfig.json"
+        def tests = readJSON file: "${env.WORKSPACE}/testConfig.json"
         def choiceNames = []
 
 

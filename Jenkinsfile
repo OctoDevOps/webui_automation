@@ -19,10 +19,10 @@ node {
 
         try {
             //read all test names
-            print $tests
+            print "$tests"
             tests["WebUI_tests"].each{
                 key,value -> 
-                print $value
+                print "$value"
                 choiceNames.push(value["displayname"])
                 } 
             choiceNames =  choiceNames.join["\n"]

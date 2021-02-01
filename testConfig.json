@@ -1,5 +1,5 @@
 {
-   "WebUI_Tests":[
+   "uitests":[
        {"displayname":"Smoke Testing",
         "tags":["@smoke"]},
         {"displayname":"Release Testing",

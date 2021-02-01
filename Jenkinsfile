@@ -19,11 +19,12 @@ node {
 
         try {
             //read all test names
-            tests.uitests.each{
-                key,value -> 
-                print "${value.displayname}"
-                choiceNames.push('${value.displayname}')
+            print "JSON config file content:${tests.uitests}"
+            tests.uitests.each{ key,value -> 
+                print "$value.displayname"
+                choiceNames.push("$value.displayname")
                 } 
+
             choiceNames =  choiceNames.join["\n"]
             echo "Choice Names: [${choiceNames}]"
 

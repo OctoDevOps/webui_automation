@@ -63,18 +63,12 @@ node {
             stage("Smoke Test"){
                 sh './mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags="${tag}"'
             }
-        } else if (userInput == 'smoke') {
+        } else {
             // do something
-            echo "Admin has approved to continue smoke testing"
-                stage("Smoke Test"){
-                        sh './mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags="${tag}"'
+            echo "Admin has approved to continue ${userInput}"
+                stage("${userInput}"){
+                        sh "./mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags=${tag}"
                     }
-        } else if (userInput == 'release'){
-            // do something else
-            echo "Admin has approved to continue Regression testing"
-                stage("Regression Testing"){
-                    sh './mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags="@regression"'
-                }
         } 
     }
 

@@ -1,0 +1,8 @@
+{
+   "WebUI_Tests":[
+       {"displayname":"Smoke Testing",
+        "tags":["@smoke"]},
+        {"displayname":"Release Testing",
+            "tags":["@regression"]}
+   ]
+}

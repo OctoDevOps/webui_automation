@@ -15,6 +15,7 @@ node {
         def didTimeout = false
         def tests = readJSON file: "${env.WORKSPACE}/testConfig.json"
         def choiceNames = []
+        def testselected = [];
 
 
         try {
@@ -45,19 +46,28 @@ node {
             }
         }
 
-        echo "[${user}] value selection is :[${userInput}]"
+        echo "[${user}] value selection is :${userInput}"
+
+        tests.uitests.each{ key,value ->         
+                if(key.displayname == userInput){
+                    testselected = key.tag
+                    print "tags : $testselected"
+                }
+            }            
+            def tag =  $testselected.join(",")
+            echo "test tag: [${tag}]"
 
         if (didTimeout) {
             // do something on timeout
             echo "no input was received before timeout. Thus, performing Smoke Test"
             stage("Smoke Test"){
-                sh './mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags="@smoke"'
+                sh './mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags="${tag}"'
             }
         } else if (userInput == 'smoke') {
             // do something
             echo "Admin has approved to continue smoke testing"
                 stage("Smoke Test"){
-                        sh './mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags="@smoke"'
+                        sh './mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags="${tag}"'
                     }
         } else if (userInput == 'release'){
             // do something else

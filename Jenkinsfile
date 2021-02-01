@@ -19,7 +19,7 @@ node {
 
         try {
             //read all test names
-            print "$tests"
+            print "$tests['WebUI_tests']"
             tests["WebUI_tests"].each{
                 key,value -> 
                 print "$value"

@@ -19,7 +19,11 @@ node {
 
         try {
             //read all test names
-            tests["WebUI_tests"].each{key,value -> choiceNames.push(value["displayname"])} 
+            tests["WebUI_tests"].each{
+                key,value -> 
+                print $value
+                choiceNames.push(value["displayname"])
+                } 
             choiceNames =  choiceNames.join["\n"]
             echo "Choice Names: [${choiceNames}]"
 

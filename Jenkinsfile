@@ -19,6 +19,7 @@ node {
 
         try {
             //read all test names
+            print $tests
             tests["WebUI_tests"].each{
                 key,value -> 
                 print $value

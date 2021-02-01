@@ -19,12 +19,10 @@ node {
 
         try {
             //read all test names
-            print "$tests";
-            print "${tests.uitests}"
             tests.uitests.each{
                 key,value -> 
-                print "$value"
-                choiceNames.push(value["displayname"])
+                print "${value.displayname}"
+                choiceNames.push('${value.displayname}')
                 } 
             choiceNames =  choiceNames.join["\n"]
             echo "Choice Names: [${choiceNames}]"

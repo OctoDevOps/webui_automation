@@ -20,8 +20,8 @@ node {
         try {
             //read all test names
             print "$tests";
-            print "${tests['WebUI_tests']}"
-            tests["WebUI_tests"].each{
+            print "${tests.uitests}"
+            tests.uitests.each{
                 key,value -> 
                 print "$value"
                 choiceNames.push(value["displayname"])

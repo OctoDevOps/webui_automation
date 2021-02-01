@@ -22,7 +22,7 @@ node {
             print "JSON config file content:${tests.uitests}"
             tests.uitests.each{ key,value -> 
                 print "value : ${value}"
-                print "displyname:${value.['displayname']}"
+                print "displyname:${value['displayname']}"
                 //choiceNames.push("$value.displayname")
                 } 
 

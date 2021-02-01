@@ -45,6 +45,8 @@ node {
             }
         }
 
+        echo "[${user}] value selection is :[${userInput}]"
+
         if (didTimeout) {
             // do something on timeout
             echo "no input was received before timeout. Thus, performing Smoke Test"

@@ -54,8 +54,8 @@ node {
                     print "tags : $testselected"
                 }
             }            
-            def tag =  $testselected.join(",")
-            echo "test tag: [${tag}]"
+            def tag =  testselected.join(",")
+            echo "test tag: ${tag}"
 
         if (didTimeout) {
             // do something on timeout

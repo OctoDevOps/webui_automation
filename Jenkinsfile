@@ -21,8 +21,8 @@ node {
             //read all test names
             print "JSON config file content:${tests.uitests}"
             tests.uitests.each{ key,value -> 
-                print "value : ${value}"
-                print "displyname:${value['displayname']}"
+                print "value : $value"
+                print "displyname:$value.displayname"
                 //choiceNames.push("$value.displayname")
                 } 
 

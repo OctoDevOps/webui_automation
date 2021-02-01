@@ -32,7 +32,7 @@ node {
                 userInput = input(
                 ok:'Yes', message: 'What do you want to do today?', parameters: [
                 //choice(name: 'Choose the test scope', choices: 'smoke\nrelease', description: 'What is the test scope?')
-                choice(name: 'Choose the test scope', choices:${choiceNames} , description: 'What is the test scope?')
+                choice(name: 'Choose the test scope', choices:"$choiceNames" , description: 'What is the test scope?')
                 ])
             }
         } catch(err) { // timeout reached or input false

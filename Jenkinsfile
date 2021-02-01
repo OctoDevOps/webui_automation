@@ -50,7 +50,7 @@ node {
 
         tests.uitests.each{ key,value ->         
                 if(key.displayname == userInput){
-                    testselected = key.tag
+                    testselected = key.tags
                     print "tags : $testselected"
                 }
             }            

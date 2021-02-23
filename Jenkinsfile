@@ -14,6 +14,7 @@ node {
         def userInput = true
         def didTimeout = false
         def tests = readJSON file: "${env.WORKSPACE}/testConfig.json"
+        def localEnv = "${env.environment}"
         def choiceNames = []
         def testselected = [];
 
@@ -65,7 +66,16 @@ node {
             // do something
             echo "Admin has approved to continue ${userInput}"
                 stage("${userInput}"){
-                        sh "./mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags=${tag} -Denvironment=dev"
+                        if(localEnv != '')
+                        {
+                            echo "Testing is running in the ${localEnv} environment"
+                            sh "./mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags=${tag} -Denvironment=${localEnv}"
+                         }
+                         else
+                         {
+                            echo "not able to fine matching environment, thus executing the test using the default URL config"
+                            sh "./mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags=${tag}"
+                         }
                     }
         } 
     }

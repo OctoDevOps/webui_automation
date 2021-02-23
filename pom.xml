@@ -89,18 +89,6 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
-
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M3</version>
-                <configuration>
-                    <!-- Parallel execution in the same JVM -->
-                    <parallel>classes</parallel>
-                    <threadCount>4</threadCount>
-                </configuration>
-            </plugin>
-
-
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>3.0.0-M5</version>

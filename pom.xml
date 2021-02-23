@@ -103,7 +103,7 @@
                         <webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
                     </systemPropertyVariables>
                     <!--<parallel>classes</parallel>    --> 
-                    <parallel>methods</parallel>
+                    <!-- <parallel>methods</parallel> -->
                      <forkCount>2</forkCount>
                      <reuseForks>true</reuseForks>
                     <!-- <useUnlimitedThreads>true</useUnlimitedThreads>  -->  

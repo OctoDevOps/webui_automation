@@ -102,9 +102,11 @@
                     <systemPropertyVariables>
                         <webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
                     </systemPropertyVariables>
-                    <parallel>classes</parallel>
+                    <!--<parallel>classes</parallel>    --> 
                     <parallel>methods</parallel>
-                    <useUnlimitedThreads>true</useUnlimitedThreads>
+                     <forkCount>2</forkCount>
+                     <reuseForks>true</reuseForks>
+                    <!-- <useUnlimitedThreads>true</useUnlimitedThreads>  -->  
                 </configuration>
                 <executions>
                     <execution>

@@ -61,7 +61,16 @@ node {
             // do something on timeout
             echo "no input was received before timeout. Thus, performing Smoke Test"
             stage("Smoke Test"){
-                sh './mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags=@smoke'
+                if(localEnv != 'null')
+                {
+                    echo "Test is running in the ${localEnv} environment"
+                    sh './mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags=@smoke'
+                }
+                else
+                {
+                    echo "not able to find matching environment, thus executing the test using the default URL config"
+                    sh './mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags=@smoke'
+                }
             }
         } else {
             // do something

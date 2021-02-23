@@ -3,6 +3,8 @@
        {"displayname":"Smoke Testing",
         "tags":["@smoke"]},
         {"displayname":"Release Testing",
-            "tags":["@regression"]}
+            "tags":["@regression"]},
+        {"displayname":"PI 31",
+                "tags":["@31"]}
    ]
 }

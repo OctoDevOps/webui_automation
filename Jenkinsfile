@@ -17,7 +17,6 @@ node {
         def choiceNames = []
         def testselected = [];
 
-
         try {
             //read all test names
             print "JSON config file content:${tests.uitests}"
@@ -32,8 +31,7 @@ node {
             timeout(time: 60, unit: 'SECONDS') { // change to a convenient timeout for you
                 userInput = input(
                 ok:'Yes', message: 'What do you want to do today?', parameters: [
-                //choice(name: 'Choose the test scope', choices: 'smoke\nrelease', description: 'What is the test scope?')
-                choice(name: 'Choose the test scope', choices:"$choiceNames" , description: 'What is the test scope?')
+                choice(name: 'Choose the test scope', choices:"$choiceNames" , description: 'Plelase select the test type that you want to perform now.')
                 ])
             }
         } catch(err) { // timeout reached or input false
@@ -51,23 +49,23 @@ node {
         tests.uitests.each{ key,value ->         
                 if(key.displayname == userInput){
                     testselected = key.tags
-                    print "tags : $testselected"
+                    //print "tags chosen to execute test : $testselected"
                 }
             }            
             def tag =  testselected.join(",")
-            echo "test tag: ${tag}"
+            echo "tags chosen to execute test : ${tag}"
 
         if (didTimeout) {
             // do something on timeout
             echo "no input was received before timeout. Thus, performing Smoke Test"
             stage("Smoke Test"){
-                sh './mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags="${tag}"'
+                sh './mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags=@smoke'
             }
         } else {
             // do something
             echo "Admin has approved to continue ${userInput}"
                 stage("${userInput}"){
-                        sh "./mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags=${tag}"
+                        sh "./mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags=${tag} -Denvironment=dev"
                     }
         } 
     }

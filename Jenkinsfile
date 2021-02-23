@@ -14,6 +14,7 @@ node {
         def userInput = true
         def didTimeout = false
         def tests = readJSON file: "${env.WORKSPACE}/testConfig.json"
+        print "Current Environment:${env.environment}"
         def localEnv = "${env.environment}"
         def choiceNames = []
         def testselected = [];
@@ -73,7 +74,7 @@ node {
                          }
                          else
                          {
-                            echo "not able to fine matching environment, thus executing the test using the default URL config"
+                            echo "not able to find matching environment, thus executing the test using the default URL config"
                             sh "./mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags=${tag}"
                          }
                     }

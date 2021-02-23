@@ -67,9 +67,9 @@ node {
             // do something
             echo "Admin has approved to continue ${userInput}"
                 stage("${userInput}"){
-                        if(localEnv != null)
+                        if(localEnv == null)
                         {
-                            echo "Testing is running in the ${localEnv} environment"
+                            echo "Test is running in the ${localEnv} environment"
                             sh "./mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags=${tag} -Denvironment=${localEnv}"
                          }
                          else

@@ -46,8 +46,9 @@ node {
             }
         }
 
-        //added an echo
+        echo "------------------------------------------"
         echo "[${user}] value selection is :${userInput}"
+        echo "------------------------------------------"
 
         tests.uitests.each{ key,value ->         
                 if(key.displayname == userInput){

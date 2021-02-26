@@ -47,7 +47,7 @@ node {
         }
 
         echo "------------------------------------------"
-        echo "[${user}] value selection is :${userInput}"
+        echo "user value selection is :${userInput}"
         echo "------------------------------------------"
 
         tests.uitests.each{ key,value ->         

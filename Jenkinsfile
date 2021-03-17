@@ -22,7 +22,7 @@ node {
             timeout(time: 60, unit: 'SECONDS') { // change to a convenient timeout for you
                 localEnv = input(
                 ok:'Yes', message: 'Where do you want to test today?', parameters: [
-                choice(name: 'Choose the test environment', choices:"dev,test,staging,prod" , description: 'Plelase select test environment where the test will be performed against. To update the environment url, pl update serenity.conf file.')
+                choice(name: 'Choose the test environment', choices:'dev\ntest\nstaging\nprod' , description: 'Plelase select test environment where the test will be performed against. To update the environment url, pl update serenity.conf file.')
                 ])
             }
 

@@ -5,23 +5,29 @@ node {
     //Step #1. checkout the files
     stage ("Code checkout")  {
             checkout scm
-            // credentialsId: 'dinesh'
-            // echo 'Checking out the files from repo...' + env.BRANCH_NAME
-            // git 'https://github.com/OctoDevOps/codelab.git'
                 }
 
     stage("Test"){
         def userInput = true
         def didTimeout = false
         def tests = readJSON file: "${env.WORKSPACE}/testConfig.json"
-        print "Current Environment:${env.environment}"
-        def localEnv = "${env.environment}"
+        def localEnv = null
         def choiceNames = []
         def testselected = [];
 
         try {
             //read all test names
             print "JSON config file content:${tests.uitests}"
+
+            timeout(time: 60, unit: 'SECONDS') { // change to a convenient timeout for you
+                localEnv = input(
+                ok:'Yes', message: 'Where do you want to test today?', parameters: [
+                choice(name: 'Choose the test environment', choices:"dev,test,staging,prod" , description: 'Plelase select test environment where the test will be performed against. To update the environment url, pl update serenity.conf file.')
+                ])
+
+            print "Selected test environment:$localEnv"
+
+
             tests.uitests.each{ key,value -> 
                 print "value : $key"
                 print "displyname:$key.displayname"
@@ -66,7 +72,7 @@ node {
                 if(localEnv != 'null')
                 {
                     echo "Test is running in the ${localEnv} environment"
-                    sh './mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags=@smoke'
+                    sh "./mvnw clean verify -Dmaven.test.failure.ignore=true -Dcucumber.filter.tags=@smoke -Denvironment=${localEnv}"
                 }
                 else
                 {

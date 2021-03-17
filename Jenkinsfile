@@ -24,6 +24,7 @@ node {
                 ok:'Yes', message: 'Where do you want to test today?', parameters: [
                 choice(name: 'Choose the test environment', choices:"dev,test,staging,prod" , description: 'Plelase select test environment where the test will be performed against. To update the environment url, pl update serenity.conf file.')
                 ])
+            }
 
             print "Selected test environment:$localEnv"
 
